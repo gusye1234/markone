@@ -1,25 +1,34 @@
-import { isLinux, isMac, isWindows } from "./detect-platform.js"
+import { isLinux, isMac, isWindows } from './detect-platform.js';
 
-const modChar = isMac ? "⌘" : "Ctrl"
-const altChar = isMac ? "⌥" : "Alt"
+const modChar = isMac ? '⌘' : 'Ctrl';
+const altChar = isMac ? '⌥' : 'Alt';
 
 const keyHelp = [
-    [`${modChar} + Enter`, "Add new block below the current block"],
-    [`${modChar} + Shift + Enter`, "Split the current block at cursor position"],
-    [`${modChar} + L`, "Change block language"],
-    [`${modChar} + Down`, "Goto next block"],
-    [`${modChar} + Up`, "Goto previous block"],
-    [`${modChar} + A`, "Select all text in a note block. Press again to select the whole buffer"],
-    [`${modChar} + ${altChar} + Up/Down`, "Add additional cursor above/below"],
-    [`${altChar} + Shift + F`, "Format block content (works for JSON, JavaScript, HTML, CSS and Markdown)"],
-]
+  [`${modChar} + Enter`, 'Add new block below the current block'],
+  [`${modChar} + Shift + Enter`, 'Split the current block at cursor position'],
+  [`${modChar} + K`, 'Change block language'],
+  [`${modChar} + Down`, 'Goto next block'],
+  [`${modChar} + Up`, 'Goto previous block'],
+  [
+    `${modChar} + A`,
+    'Select all text in a note block. Press again to select the whole buffer',
+  ],
+  [`${modChar} + ${altChar} + Up/Down`, 'Add additional cursor above/below'],
+  [
+    `${altChar} + Shift + F`,
+    'Format block content (works for JSON, JavaScript, HTML, CSS and Markdown)',
+  ],
+];
 if (isWindows || isLinux) {
-    keyHelp.push([altChar, "Show menu"])
+  keyHelp.push([altChar, 'Show menu']);
 }
 
-const keyMaxLength = keyHelp.map(([key, help]) => key.length).reduce((a, b) => Math.max(a, b))
-const keyHelpStr = keyHelp.map(([key, help]) => `${key.padEnd(keyMaxLength)}   ${help}`).join("\n")
-
+const keyMaxLength = keyHelp
+  .map(([key, help]) => key.length)
+  .reduce((a, b) => Math.max(a, b));
+const keyHelpStr = keyHelp
+  .map(([key, help]) => `${key.padEnd(keyMaxLength)}   ${help}`)
+  .join('\n');
 
 export const initialContent = `
 ∞∞∞text
@@ -46,9 +55,11 @@ In Markdown blocks, lists with [x] and [ ] are rendered as checkboxes:
 - [x] Download Heynote
 - [ ] Try out Heynote
 ∞∞∞text-a
-`
+`;
 
-export const initialDevContent = initialContent + `
+export const initialDevContent =
+  initialContent +
+  `
 ∞∞∞python-a
 # hmm
 def my_func():
@@ -132,5 +143,4 @@ Shopping list:
 - Milk
 - Eggs
 - Bread
-- Cheese`
-
+- Cheese`;
